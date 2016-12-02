@@ -18,7 +18,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.yamamz.hroracle.prefs.Settings;
 
@@ -108,22 +107,22 @@ if(username.isEmpty() && password.isEmpty()) {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_home:
-                        Toast.makeText(MainActivity.this,"first",Toast.LENGTH_LONG).show();
+                    case R.id.nav_employeeList:
+
                         mDrawerLayout.closeDrawers();
                         break;
-                    case R.id.nav_messages:
-                        Toast.makeText(MainActivity.this,"second",Toast.LENGTH_LONG).show();
+                    case R.id.nav_create:
+
                         mDrawerLayout.closeDrawers();
 
                         break;
-                    case R.id.nav_friends:
-                        Toast.makeText(MainActivity.this,"third",Toast.LENGTH_LONG).show();
+                    case R.id.nav_countries:
+
                         mDrawerLayout.closeDrawers();
                         break;
 
-                    case R.id.nav_discussion:
-                        Toast.makeText(MainActivity.this,"forth",Toast.LENGTH_LONG).show();
+                    case R.id.nav_jobs:
+
                         mDrawerLayout.closeDrawers();
                         break;
                 }
