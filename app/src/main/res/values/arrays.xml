@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="circle_images">
+        <item>@drawable/circle</item>
+        <item>@drawable/circle2</item>
+        <item>@drawable/circle3</item>
+        <item>@drawable/circle4</item>
+        <item>@drawable/circle5</item>
+        <item>@drawable/circle6</item>
+        <item>@drawable/circle7</item>
+        <item>@drawable/circle8</item>
+        <item>@drawable/circle9</item>
+        <item>@drawable/circle10</item>
+        <item>@drawable/circle11</item>
+        <item>@drawable/circle12</item>
+    </array>
+</resources>

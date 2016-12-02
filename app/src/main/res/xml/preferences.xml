@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="Credentials"
+        android:title="Please Enter your Credentials">
+
+
+
+        <EditTextPreference
+            android:enabled="false"
+            android:defaultValue=""
+            android:dialogMessage="Username"
+            android:dialogTitle="Your Broadcast IP"
+            android:inputType="textCapWords"
+            android:key="username"
+            android:summary="your username stored here"
+            android:title="Username" />
+
+        <EditTextPreference
+            android:enabled="false"
+            android:defaultValue=""
+            android:dialogMessage="Password"
+            android:dialogTitle="Password"
+            android:inputType="textPassword"
+            android:key="password"
+            android:summary="Your password stored here"
+            android:title="Password" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

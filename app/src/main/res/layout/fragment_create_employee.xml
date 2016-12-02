@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_add_employee"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin1"
+    android:paddingLeft="@dimen/activity_horizontal_margin1"
+    android:paddingRight="@dimen/activity_horizontal_margin1"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/card_margin1">
+
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <android.support.design.widget.TextInputLayout
+
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:layout_weight="1"
+                            android:id="@+id/input_layout_id"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textSize="@dimen/text_size"
+                                android:textColor="@color/colorPrimary"
+                                android:id="@+id/input_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_id" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:layout_weight="2.5"
+                            android:id="@+id/input_layout_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size"
+                                android:id="@+id/input_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_name" />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_weight="1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:id="@+id/input_layout_mgr"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size"
+                                android:id="@+id/input_mgr"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_mgr" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_weight="2.5"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:id="@+id/input_layout_datehire"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size"
+                                android:id="@+id/input_datehire"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_datehire" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_weight="1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:id="@+id/input_layout_deptno"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size"
+                                android:id="@+id/input_deptno"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_deptno" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_weight="2.5"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:id="@+id/input_layout_job"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size"
+                                android:id="@+id/input_job"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_job" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:id="@+id/input_layout_sal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_size"
+                            android:id="@+id/input_sal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_salary" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:id="@+id/input_layout_comm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_size"
+                            android:id="@+id/input_comm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_comm" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_save_white_48dp"/>
+
+
+</RelativeLayout>
