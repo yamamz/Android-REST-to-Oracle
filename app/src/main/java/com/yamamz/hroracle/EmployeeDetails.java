@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -34,8 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EmployeeDetails extends AppCompatActivity {
-    private TextInputLayout layoutName,layoutId,layoutJob,layoutSalary,layoutManager,layoutDatehire,layoutCommission,layoutDeptno;
-    private EditText inputName, inputId, inputJob, inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
+     private EditText inputName, inputId, inputJob, inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
     private String UnixTime;
     private String username;
     private String password;
@@ -47,24 +45,22 @@ public class EmployeeDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_details);
 
-        Realm.init(this);
-        realm = Realm.getDefaultInstance();
-
-        Intent intent = getIntent();
-        final String Name = intent.getStringExtra("name");
-
-
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Employee Info");
-        //getCredendialsInprefs();
+
+        /**
+         * initialize realm for local database
+         */
+
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
+
 
         initLayout();
-
         loadBackdrop();
 
     }
@@ -75,20 +71,13 @@ public class EmployeeDetails extends AppCompatActivity {
 
 
     void initLayout(){
-
+        /**
+         * kuhaon ang value sa intent nga gipasa gikan sa main activity
+         */
         Intent startingIntent = getIntent();
         final String id=startingIntent.getStringExtra("id");
 
-
-        layoutId=(TextInputLayout) findViewById(R.id.input_layout_id);
-        layoutName=(TextInputLayout) findViewById(R.id.input_layout_name);
-        layoutJob=(TextInputLayout) findViewById(R.id.input_layout_job);
-        layoutSalary=(TextInputLayout) findViewById(R.id.input_layout_sal);
-        layoutManager=(TextInputLayout) findViewById(R.id.input_layout_mgr);
-        layoutDatehire=(TextInputLayout) findViewById(R.id.input_layout_datehire);
-        layoutCommission=(TextInputLayout) findViewById(R.id.input_layout_comm);
-        layoutDeptno=(TextInputLayout) findViewById(R.id.input_layout_deptno);
-
+        //initialize views
 
         inputId=(EditText) findViewById(R.id.input_id);
         inputName=(EditText) findViewById(R.id.input_name);
@@ -116,7 +105,6 @@ public class EmployeeDetails extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(btnUpdate.getText().toString().equals("Edit")){
-
                     inputId.setEnabled(true);
                     inputName.setEnabled(true);
                     inputJob.setEnabled(true);
@@ -145,6 +133,8 @@ public class EmployeeDetails extends AppCompatActivity {
 
                     btnUpdate.setText("Edit");
                    getCredendialsInprefs();
+
+                    //The meathod to Edit employee
                     EditEmployee();
 
                 }
@@ -153,15 +143,18 @@ public class EmployeeDetails extends AppCompatActivity {
         });
 
 
-
+        /**
+         * query sa Realm nga mo find employee on ID
+         */
         final RealmResults<Emp> emp = realm.where(Emp.class).findAll();
         employee = emp.where().equalTo("empno", Integer.valueOf(id)).findFirst();
-        inputId.setText(id);
 
-        SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
+
+        inputId.setText(id);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
 
         try {
-            long timestamp = Long.valueOf(employee.getHiredate()); //Example -> in ms
+            long timestamp = Long.valueOf(employee.getHiredate());
             Date dateHired = new Date(timestamp);
 
             inputName.setText(employee.getEname());
@@ -209,9 +202,11 @@ public class EmployeeDetails extends AppCompatActivity {
     }
 
     void EditEmployee(){
-
+        //get Authenticated
         apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
+        //convert the datehire into unixtime
         converttoUnixtime();
+
         Emp user = new Emp(Integer.valueOf(inputId.getText().toString()),inputName.getText().toString(),
                 inputJob.getText().toString(),Integer.valueOf(inputManager.getText().toString()),
                 UnixTime,Integer.valueOf(inputSalary.getText().toString()),
@@ -230,8 +225,6 @@ public class EmployeeDetails extends AppCompatActivity {
 
                 if(response.code()==403) {
                     @SuppressLint("SimpleDateFormat") SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
-
-
                     long timestamp = Long.valueOf(employee.getHiredate()); //Example -> in ms
                     Date dateHired = new Date(timestamp);
                     Toast.makeText(EmployeeDetails.this, "You are not authorized", Toast.LENGTH_LONG).show();
@@ -323,7 +316,6 @@ public class EmployeeDetails extends AppCompatActivity {
         });
     }
     void getCredendialsInprefs(){
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         username = sharedPrefs.getString("username", "");
         password = sharedPrefs.getString("password", "");

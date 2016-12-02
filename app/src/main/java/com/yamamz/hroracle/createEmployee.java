@@ -1,12 +1,12 @@
 package com.yamamz.hroracle;
 
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,11 +35,9 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
     private ProgressDialog pDialog;
     private String username;
     private String password;
-
-    private TextInputLayout layoutName,layoutId,layoutJob,layoutSalary,layoutManager,layoutDatehire,layoutCommission,layoutDeptno;
     private EditText inputName, inputId, inputJob, inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
     private  long timestamp;
-
+private View RootView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,33 +48,33 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rv = inflater.inflate(R.layout.fragment_create_employee, container, false);
+   RootView = inflater.inflate(R.layout.fragment_create_employee, container, false);
 
 
-        layoutId=(TextInputLayout) rv.findViewById(R.id.input_layout_id);
-        layoutName=(TextInputLayout) rv.findViewById(R.id.input_layout_name);
-        layoutJob=(TextInputLayout) rv.findViewById(R.id.input_layout_job);
-        layoutSalary=(TextInputLayout) rv.findViewById(R.id.input_layout_sal);
-        layoutManager=(TextInputLayout) rv.findViewById(R.id.input_layout_mgr);
-        layoutDatehire=(TextInputLayout) rv.findViewById(R.id.input_layout_datehire);
-        layoutCommission=(TextInputLayout) rv.findViewById(R.id.input_layout_comm);
-        layoutDeptno=(TextInputLayout) rv.findViewById(R.id.input_layout_deptno);
 
-        inputId=(EditText) rv.findViewById(R.id.input_id);
-        inputName=(EditText) rv.findViewById(R.id.input_name);
-        inputJob=(EditText) rv.findViewById(R.id.input_job);
-        inputSalary=(EditText) rv.findViewById(R.id.input_sal);
-        inputManager=(EditText) rv.findViewById(R.id.input_mgr);
-        inputDatehire=(EditText) rv.findViewById(R.id.input_datehire);
-        inputCommission=(EditText) rv.findViewById(R.id.input_comm);
-        inputDeptno=(EditText) rv.findViewById(R.id.input_deptno);
+        iniViews();
+        return RootView;
+    }
+
+    /**
+     * initialized views
+     */
+    void iniViews(){
+
+
+        inputId=(EditText) RootView.findViewById(R.id.input_id);
+        inputName=(EditText) RootView.findViewById(R.id.input_name);
+        inputJob=(EditText) RootView.findViewById(R.id.input_job);
+        inputSalary=(EditText) RootView.findViewById(R.id.input_sal);
+        inputManager=(EditText) RootView.findViewById(R.id.input_mgr);
+        inputDatehire=(EditText) RootView.findViewById(R.id.input_datehire);
+        inputCommission=(EditText) RootView.findViewById(R.id.input_comm);
+        inputDeptno=(EditText) RootView.findViewById(R.id.input_deptno);
 
 
         inputDatehire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 DatePickerBuilder dpb = new DatePickerBuilder()
                         .setFragmentManager(getChildFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment)
@@ -86,18 +84,21 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) rv.findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) RootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+             //call the http meathod Post to data to Oracle
                 postEmp();
 
 
             }
         });
-
-        return rv;
     }
+
+
+
 
     void postEmp(){
       getCredendialsInprefs();
@@ -106,43 +107,53 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
         pDialog.setCancelable(false);
         pDialog.show();
 
-
+        /**
+             Get the credendials an authenticate
+         */
         apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
 
 
         try {
 
+    /**
+     * Create instance from your object and get the value of each Edit Text
+     */
             Emp user = new Emp(Integer.valueOf(inputId.getText().toString()), inputName.getText().toString(),
                     inputJob.getText().toString(), Integer.valueOf(inputManager.getText().toString()),
                     String.valueOf(timestamp), Integer.valueOf(inputSalary.getText().toString()),
                     Integer.valueOf(inputCommission.getText().toString()), Integer.valueOf(inputDeptno.getText().toString()));
 
-
+            /**
+             * e call ang imong Interface nga mo map Post Request
+             */
             Call<Emp> call = service.createUser(user);
             call.enqueue(new Callback<Emp>() {
                 @Override
                 public void onResponse(Call<Emp> call, Response<Emp> response) {
+
+
                     if (response.code() == 204) {
                         Toast.makeText(getActivity(), "Save Successfully", Toast.LENGTH_LONG).show();
                         if (pDialog.isShowing())
-                            pDialog.dismiss();
-                        inputSalary.setText("");
-                        inputId.setText("");
-                        inputDatehire.setText("");
-                        inputJob.setText("");
-                        inputName.setText("");
-                        inputManager.setText("");
-                        inputCommission.setText("");
-                        inputDeptno.setText("");
+                                pDialog.dismiss();
+                                inputSalary.setText("");
+                                inputId.setText("");
+                                inputDatehire.setText("");
+                                inputJob.setText("");
+                                inputName.setText("");
+                                inputManager.setText("");
+                                inputCommission.setText("");
+                                inputDeptno.setText("");
 
                     } else {
                         if (pDialog.isShowing())
                             pDialog.dismiss();
 
                     }
-
+                    /**
+                     * kung imo account wala ge authorize ug post Request
+                     */
                     if (response.code() == 403) {
-
                         Toast.makeText(getActivity(), "you are not authorize here", Toast.LENGTH_LONG).show();
 
                     }
@@ -168,22 +179,23 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
     }
 
 
-
-
-
+    /**
+     * mukuha sa credentials nga na save sa prefs
+     */
     void getCredendialsInprefs(){
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         username = sharedPrefs.getString("username", "");
         password = sharedPrefs.getString("password", "");
     }
 
+    /**
+     * convert ang input sa unix time gikan sa string
+     */
     @Override
     public void onDialogDateSet(int reference, int year, int monthOfYear, int dayOfMonth) {
-
         String date=(monthOfYear+1)+"/"+dayOfMonth+"/"+year;
 
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date1 = null;
         try {
             date1 = formatter.parse(date);
@@ -192,9 +204,9 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
         }
         long output=date1.getTime()/1000L;
         String str=Long.toString(output);
-        timestamp = Long.parseLong(str) * 1000;
 
-        SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
+        timestamp = Long.parseLong(str) * 1000;
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
         Date dateHired = new Date(timestamp);
         inputDatehire.setText(String.valueOf(dt1.format(dateHired)));
 
