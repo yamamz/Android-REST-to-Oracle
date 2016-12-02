@@ -2,7 +2,9 @@ package com.yamamz.hroracle;
 
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -12,7 +14,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.codetroopers.betterpickers.datepicker.DatePickerBuilder;
+import com.codetroopers.betterpickers.datepicker.DatePickerDialogFragment;
 import com.yamamz.hroracle.model.Emp;
 import com.yamamz.hroracle.retrofitAPI.ServiceGenerator;
 import com.yamamz.hroracle.retrofitAPI.apiServices;
@@ -27,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class createEmployee extends Fragment implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+public class createEmployee extends Fragment implements DatePickerDialogFragment.DatePickerDialogHandler {
 
     private ProgressDialog pDialog;
     private String username;
@@ -67,12 +70,18 @@ public class createEmployee extends Fragment implements com.wdullaer.materialdat
         inputDatehire=(EditText) rv.findViewById(R.id.input_datehire);
         inputCommission=(EditText) rv.findViewById(R.id.input_comm);
         inputDeptno=(EditText) rv.findViewById(R.id.input_deptno);
+
+
         inputDatehire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-
+                DatePickerBuilder dpb = new DatePickerBuilder()
+                        .setFragmentManager(getChildFragmentManager())
+                        .setStyleResId(R.style.BetterPickersDialogFragment)
+                        .setTargetFragment(createEmployee.this);
+                dpb.show();
 
             }
         });
@@ -90,20 +99,16 @@ public class createEmployee extends Fragment implements com.wdullaer.materialdat
         return rv;
     }
 
-    void initLayout(){
-
-
-    }
     void postEmp(){
-      //  getCredendialsInprefs();
+      getCredendialsInprefs();
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
         pDialog.show();
 
 
-        apiServices service = ServiceGenerator.createService(apiServices.class, "admin", "adminpw1");
-        String dateHire = inputDatehire.getText().toString();
+        apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
+
 
         try {
 
@@ -164,8 +169,18 @@ public class createEmployee extends Fragment implements com.wdullaer.materialdat
 
 
 
+
+
+    void getCredendialsInprefs(){
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        username = sharedPrefs.getString("username", "");
+        password = sharedPrefs.getString("password", "");
+    }
+
     @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+    public void onDialogDateSet(int reference, int year, int monthOfYear, int dayOfMonth) {
+
         String date=(monthOfYear+1)+"/"+dayOfMonth+"/"+year;
 
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -182,6 +197,7 @@ public class createEmployee extends Fragment implements com.wdullaer.materialdat
         SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
         Date dateHired = new Date(timestamp);
         inputDatehire.setText(String.valueOf(dt1.format(dateHired)));
+
 
     }
 }

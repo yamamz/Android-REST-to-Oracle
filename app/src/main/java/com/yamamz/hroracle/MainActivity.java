@@ -59,8 +59,11 @@ if(username.isEmpty() && password.isEmpty()) {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         if (navigationView != null) {
+
             setupDrawerContent(navigationView);
+
         }
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -74,6 +77,7 @@ if(username.isEmpty() && password.isEmpty()) {
 
 
     }
+
 
 
 
@@ -92,6 +96,8 @@ if(username.isEmpty() && password.isEmpty()) {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;
@@ -181,6 +187,7 @@ if(username.isEmpty() && password.isEmpty()) {
             case R.id.action_logout:
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = preferences.edit();
+                //key value pair
                 editor.putString("username","");
                 editor.putString("password","");
                 editor.apply();
