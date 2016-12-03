@@ -18,6 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.yamamz.hroracle.prefs.Settings;
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private String username;
     private String password;
+    private TextView userNameAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Realm.init(this);
         realm = Realm.getDefaultInstance();
-
         getCredendialsInprefs();
 
 if(username.isEmpty() && password.isEmpty()) {
@@ -58,12 +60,12 @@ if(username.isEmpty() && password.isEmpty()) {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header);
+        userNameAvatar=(TextView) headerLayout.findViewById(R.id.user_name_avatar);
 
-        if (navigationView != null) {
 
-            setupDrawerContent(navigationView);
-
-        }
+        setupDrawerContent(navigationView);
+        userNameAvatar.setText(username);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
@@ -72,6 +74,9 @@ if(username.isEmpty() && password.isEmpty()) {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
+
 
 
 
@@ -95,8 +100,6 @@ if(username.isEmpty() && password.isEmpty()) {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;

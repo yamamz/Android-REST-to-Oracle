@@ -47,6 +47,7 @@ public class EmployeeDetails extends AppCompatActivity {
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -266,8 +267,6 @@ public class EmployeeDetails extends AppCompatActivity {
     void DeleteEmployee(final int PositionID) {
 
         apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
-
-
         Call<ResponseBody> deleteRequest = service.deleteEmployee(PositionID);
         deleteRequest.enqueue(new Callback<ResponseBody>() {
             @Override

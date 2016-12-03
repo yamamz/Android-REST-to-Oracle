@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="192dp"
-    android:background="?attr/colorPrimaryDark"
+    android:background="@drawable/mb_02"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:orientation="vertical"
@@ -12,13 +12,19 @@
         android:id="@+id/avatar"
         android:layout_width="@dimen/drawer_avatar_size"
         android:layout_height="@dimen/drawer_avatar_size"
+        android:src="@drawable/ic_supervisor_account_white_36dp"
      />
 
 
     <TextView
+        android:id="@+id/user_name_avatar"
+        android:paddingTop="@dimen/fab_margin"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:gravity="center"
+        android:text="@string/username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.yamamz.hroracle.retrofitAPI;
 
 import com.yamamz.hroracle.model.Emp;
+import com.yamamz.hroracle.model.Job;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,10 @@ public interface apiServices {
 
     @GET("secureUser/employees/")
     Call<ArrayList<Emp>> getAutheticated();
+
+    @GET("secureUser/jobs/")
+    Call<ArrayList<Job>> getJobs();
+
 
 
 }

@@ -229,6 +229,8 @@
 
 
                         <Button
+                            android:textColor="@color/White"
+                            android:background="@color/colorPrimary"
                             android:layout_weight="1"
                             android:id="@+id/btnUpdate"
                             android:layout_width="0dp"
@@ -237,6 +239,8 @@
                             />
 
                         <Button
+                            android:textColor="@color/White"
+                            android:background="@color/colorPrimary"
                             android:layout_weight="1"
                             android:id="@+id/btnDelete"
                             android:layout_width="0dp"

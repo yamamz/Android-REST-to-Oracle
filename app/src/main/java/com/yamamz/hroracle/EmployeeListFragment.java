@@ -123,7 +123,7 @@ public class EmployeeListFragment extends Fragment  {
                 mView = view;
                 Name = (TextView) view.findViewById(R.id.Name);
                 position = (TextView) view.findViewById(R.id.position);
-                empID = (TextView) view.findViewById(R.id.dateHire);
+                empID = (TextView) view.findViewById(R.id.EmpID);
                 Initial = (TextView) view.findViewById(R.id.Initial);
             }
         }
@@ -223,8 +223,6 @@ public class EmployeeListFragment extends Fragment  {
     void getJSONDataOnServer(){
 
         apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
-
-
         Call<ArrayList<Emp>> call = service.getEmployees();
         call.enqueue(new Callback<ArrayList<Emp>>() {
             @Override
@@ -277,14 +275,13 @@ public class EmployeeListFragment extends Fragment  {
 
            bgRealm.copyToRealm(dataEmp);
 
-
             }
         }, new Realm.Transaction.OnSuccess() {
 
             @Override
             public void onSuccess() {
 
-Toast.makeText(getActivity(),"not null"+String.valueOf(dataEmp.size()),Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"not null"+String.valueOf(dataEmp.size()),Toast.LENGTH_LONG).show();
 
             }
         });

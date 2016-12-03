@@ -17,30 +17,32 @@
     <color name="light_green">#3c2ae668</color>
 
 
-    <color name="bright_pink">#EC407A</color>
-    <color name="red">#4DD0E1</color>
-    <color name="orange">#26C6DA</color>
-    <color name="yellow">#00BCD4</color>
-    <color name="chartreuse">#00ACC1</color>
-    <color name="green">#FF7043</color>
-    <color name="spring_green">#2196F3</color>
-    <color name="cyan">#84FFFF</color>
-    <color name="azure">#18FFFF</color>
-    <color name="blue">#00E5FF</color>
-    <color name="violet">#01579B</color>
-    <color name="magenta">#00BCD4</color>
+    <color name="color1">#EC407A</color>
+    <color name="color2">#4DD0E1</color>
+    <color name="color3">#26C6DA</color>
+    <color name="color4">#00BCD4</color>
+    <color name="color5">#00ACC1</color>
+    <color name="color6">#FF7043</color>
+    <color name="color7">#2196F3</color>
+    <color name="color8">#84FFFF</color>
+    <color name="color9">#18FFFF</color>
+    <color name="color10">#00E5FF</color>
+    <color name="color11">#01579B</color>
+    <color name="color12">#00BCD4</color>
+
+
     <array name="rainbow">
-        <item>@color/bright_pink</item>
-        <item>@color/red</item>
-        <item>@color/orange</item>
-        <item>@color/yellow</item>
-        <item>@color/chartreuse</item>
-        <item>@color/green</item>
-        <item>@color/spring_green</item>
-        <item>@color/cyan</item>
-        <item>@color/azure</item>
-        <item>@color/blue</item>
-        <item>@color/violet</item>
-        <item>@color/magenta</item>
+        <item>@color/color1</item>
+        <item>@color/color2</item>
+        <item>@color/color3</item>
+        <item>@color/color4</item>
+        <item>@color/color5</item>
+        <item>@color/color6</item>
+        <item>@color/color7</item>
+        <item>@color/color8</item>
+        <item>@color/color9</item>
+        <item>@color/color10</item>
+        <item>@color/color11</item>
+        <item>@color/color12</item>
     </array>
 </resources>

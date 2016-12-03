@@ -7,9 +7,9 @@
     <string name="hint_job">position</string>
     <string name="hint_salary">Salary</string>
     <string name="hint_datehire">date hire</string>
-    <string name="hint_mgr">manager\'s id</string>
+    <string name="hint_mgr">Mgr id</string>
     <string name="hint_comm">commision</string>
-    <string name="hint_deptno">department ID</string>
+    <string name="hint_deptno">dept ID</string>
     <string name="title_activity_add_employee">AddEmployee</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -29,4 +29,5 @@
         completions."
     </string>
     <string name="action_logout">Logout</string>
+    <string name="username">Username</string>
 </resources>

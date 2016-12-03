@@ -21,178 +21,158 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_margin1">
 
+            <LinearLayout
+                android:padding="@dimen/fab_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+
+                        android:layout_weight="1"
+                        android:id="@+id/input_layout_id1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:inputType="number"
+                            android:textColor="@color/colorPrimary"
+                            android:id="@+id/input_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_id" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+
+                        android:layout_weight="2.5"
+                        android:id="@+id/input_layout_name1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:inputType="textCapCharacters"
+                            android:textColor="@color/colorPrimary"
+                            android:id="@+id/input_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_name" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+
+               <TextView
+
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Position"/>
+                    <Spinner
+                        android:spinnerMode="dialog"
+                        android:id="@+id/spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+
+
+
+                <android.support.design.widget.TextInputLayout
+
+                    android:id="@+id/input_layout_sal1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <LinearLayout
+                    <EditText
+                        android:inputType="number"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/input_sal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <android.support.design.widget.TextInputLayout
-
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:layout_weight="1"
-                            android:id="@+id/input_layout_id"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:textSize="@dimen/text_size"
-                                android:textColor="@color/colorPrimary"
-                                android:id="@+id/input_id"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_id" />
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:layout_weight="2.5"
-                            android:id="@+id/input_layout_name"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="@dimen/text_size"
-                                android:id="@+id/input_name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_name" />
-                        </android.support.design.widget.TextInputLayout>
-                    </LinearLayout>
+                        android:hint="@string/hint_salary" />
+                </android.support.design.widget.TextInputLayout>
 
 
+                <android.support.design.widget.TextInputLayout
 
-                    <LinearLayout
+                    android:id="@+id/input_layout_datehire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+
+                        android:textColor="@color/colorPrimary"
+                        android:focusable="false"
+                        android:id="@+id/input_datehire"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:hint="@string/hint_datehire" />
+                </android.support.design.widget.TextInputLayout>
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_weight="1"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:id="@+id/input_layout_mgr"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="@dimen/text_size"
-                                android:id="@+id/input_mgr"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_mgr" />
-                        </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
 
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_weight="2.5"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:id="@+id/input_layout_datehire"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="@dimen/text_size"
-                                android:id="@+id/input_datehire"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_datehire" />
-                        </android.support.design.widget.TextInputLayout>
-
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    android:id="@+id/input_layout_mgr1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:inputType="number"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/input_mgr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:hint="@string/hint_mgr" />
+                </android.support.design.widget.TextInputLayout>
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_weight="1"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:id="@+id/input_layout_deptno"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="@dimen/text_size"
-                                android:id="@+id/input_deptno"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_deptno" />
-                        </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_weight="2.5"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:id="@+id/input_layout_job"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="@dimen/text_size"
-                                android:id="@+id/input_job"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_job" />
-                        </android.support.design.widget.TextInputLayout>
-
-
-                    </LinearLayout>
-
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:id="@+id/input_layout_sal"
+                    android:id="@+id/input_layout_comm1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:inputType="number"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/input_comm"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/text_size"
-                            android:id="@+id/input_sal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hint_salary" />
-                    </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_comm" />
+                </android.support.design.widget.TextInputLayout>
 
+                <android.support.design.widget.TextInputLayout
 
+                    android:id="@+id/input_layout_deptno1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
 
-                    <android.support.design.widget.TextInputLayout
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:id="@+id/input_layout_comm"
+                        android:inputType="number"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/input_deptno"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/text_size"
-                            android:id="@+id/input_comm"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hint_comm" />
-                    </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_deptno" />
+                </android.support.design.widget.TextInputLayout>
 
+                <Button
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:text="Save"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
+
 
         </android.support.v7.widget.CardView>
 
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
 
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_save_white_48dp"/>
 
 
 </RelativeLayout>

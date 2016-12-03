@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "http://192.168.81.231:8080/oracle/";
+    private static final String API_BASE_URL = "http://192.168.81.231:8080/WebService/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -41,7 +41,6 @@ public class ServiceGenerator {
                 @Override
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Request original = chain.request();
-
                     Request.Builder requestBuilder = original.newBuilder()
                             .header("Authorization", basic)
                             .header("Accept", "application/json")

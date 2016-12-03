@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/riffle_effects"
@@ -44,19 +45,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:fontFamily="sans-serif-thin"
                     android:textAppearance="?attr/textAppearanceListItem"
-                    android:id="@+id/dateHire"
+                    android:id="@+id/EmpID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    />
+                    tools:targetApi="jelly_bean" />
                 <TextView
+                    android:fontFamily="sans-serif-thin"
                     android:textAppearance="?attr/textAppearanceListItem"
                     android:id="@+id/Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:targetApi="jelly_bean" />
 
 
 
@@ -64,11 +68,13 @@
             </LinearLayout>
 
             <TextView
+                android:fontFamily="sans-serif-thin"
                 android:textSize="12sp"
                 android:id="@+id/position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                tools:targetApi="jelly_bean" />
         </LinearLayout>
 
 
