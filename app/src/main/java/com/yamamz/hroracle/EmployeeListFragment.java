@@ -305,30 +305,25 @@ public class EmployeeListFragment extends Fragment  {
     @Override
     public void onDetach() {
         super.onDetach();
-        super.onDestroy();
         realm.close();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        super.onDestroy();
         realm.close();
-        employeesList.clear();
-        employeeList.clear();
+
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        super.onDestroy();
         realm.close();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        super.onDestroy();
         realm.close();
     }
 
@@ -336,7 +331,6 @@ public class EmployeeListFragment extends Fragment  {
     @Override
     public void onPause() {
         super.onPause();
-        super.onDestroy();
         realm.close();
 
     }

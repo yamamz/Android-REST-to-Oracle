@@ -90,7 +90,7 @@ if(username.isEmpty() && password.isEmpty()) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new EmployeeListFragment(), "Employees");
         adapter.addFragment(new createEmployee(), "add Employee");
-        adapter.addFragment(new EmployeeListFragment(), "Country");
+        adapter.addFragment(new createEmployee(), "Country");
         viewPager.setAdapter(adapter);
 
     }
@@ -109,11 +109,15 @@ if(username.isEmpty() && password.isEmpty()) {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+
                 switch (menuItem.getItemId()) {
                     case R.id.nav_employeeList:
 
+
                         mDrawerLayout.closeDrawers();
                         break;
+
                     case R.id.nav_create:
 
                         mDrawerLayout.closeDrawers();
@@ -129,6 +133,7 @@ if(username.isEmpty() && password.isEmpty()) {
                         mDrawerLayout.closeDrawers();
                         break;
                 }
+
                 return true;
             }
         });

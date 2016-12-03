@@ -56,6 +56,7 @@ private View RootView;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -77,7 +78,6 @@ private View RootView;
 
         inputId=(EditText) RootView.findViewById(R.id.input_id);
         inputName=(EditText) RootView.findViewById(R.id.input_name);
-
         inputSalary=(EditText) RootView.findViewById(R.id.input_sal);
         inputManager=(EditText) RootView.findViewById(R.id.input_mgr);
         inputDatehire=(EditText) RootView.findViewById(R.id.input_datehire);
@@ -102,18 +102,11 @@ private View RootView;
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
              //call the http meathod Post to data to Oracle
                 postEmp();
-
-
             }
         });
-
         getJSONDataOnServer();
-
-
-
     }
 
     private void initSimpleSpinner() {
@@ -127,7 +120,6 @@ private View RootView;
         spinnerJobs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 itemJobSelected = parent.getItemAtPosition(position).toString();
             }
 
@@ -179,7 +171,6 @@ private View RootView;
                                 inputSalary.setText("");
                                 inputId.setText("");
                                 inputDatehire.setText("");
-
                                 inputName.setText("");
                                 inputManager.setText("");
                                 inputCommission.setText("");
@@ -199,15 +190,12 @@ private View RootView;
                                 .show();
                         if (pDialog.isShowing())
                             pDialog.dismiss();
-
-
                     }
                     /**
                      * kung imo account wala ge authorize ug post Request
                      */
                     if (response.code() == 403) {
                         Toast.makeText(getActivity(), "you are not authorize here", Toast.LENGTH_LONG).show();
-
                     }
 
                 }
@@ -223,7 +211,6 @@ private View RootView;
         } catch (Exception e){
             if (pDialog.isShowing())
                 pDialog.dismiss();
-
             Toast.makeText(getActivity(),e.toString(), Toast.LENGTH_LONG).show();
         }
 
