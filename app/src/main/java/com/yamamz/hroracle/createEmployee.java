@@ -265,9 +265,6 @@ if(response.code()==200) {
     Toast.makeText(getActivity(), String.valueOf(jobsList.size()), Toast.LENGTH_LONG).show();
     initSimpleSpinner();
                         }
-
-
-
             }
 
             @Override

@@ -129,9 +129,6 @@ public class EmployeeDetails extends AppCompatActivity {
                     inputDatehire.setEnabled(false);
                     inputCommission.setEnabled(false);
                     inputDeptno.setEnabled(false);
-
-
-
                     btnUpdate.setText("Edit");
                    getCredendialsInprefs();
 
@@ -297,9 +294,6 @@ public class EmployeeDetails extends AppCompatActivity {
 
                         }
                     });
-
-
-
                 }
 
                 if(response.code()==403) {

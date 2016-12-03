@@ -300,39 +300,10 @@ public class EmployeeListFragment extends Fragment  {
         super();
     }
 
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        realm.close();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        realm.close();
-
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        realm.close();
-    }
-
     @Override
     public void onStop() {
         super.onStop();
         realm.close();
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        realm.close();
-
     }
 
     @Override
@@ -341,17 +312,12 @@ public class EmployeeListFragment extends Fragment  {
         Realm.init(getActivity());
         realm = Realm.getDefaultInstance();
     }
-
-
-
     @Override
     public void onResume() {
         super.onResume();
         Realm.init(getActivity());
         realm = Realm.getDefaultInstance();
     }
-
-
     void getCredendialsInprefs(){
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
