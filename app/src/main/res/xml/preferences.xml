@@ -5,8 +5,6 @@
         android:key="Credentials"
         android:title="Please Enter your Credentials">
 
-
-
         <EditTextPreference
             android:enabled="false"
             android:defaultValue=""
@@ -16,7 +14,6 @@
             android:key="username"
             android:summary="your username stored here"
             android:title="Username" />
-
         <EditTextPreference
             android:enabled="false"
             android:defaultValue=""

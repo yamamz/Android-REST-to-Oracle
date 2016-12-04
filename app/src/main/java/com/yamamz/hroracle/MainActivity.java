@@ -26,11 +26,9 @@ import com.yamamz.hroracle.prefs.Settings;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.Realm;
-
 public class MainActivity extends AppCompatActivity {
 
-    private Realm realm;
+
     private DrawerLayout mDrawerLayout;
     private String username;
     private String password;
@@ -40,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Realm.init(this);
-        realm = Realm.getDefaultInstance();
+
         getCredendialsInprefs();
 
 if(username.isEmpty() && password.isEmpty()) {
@@ -206,31 +203,7 @@ if(username.isEmpty() && password.isEmpty()) {
         }
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Realm.init(this);
-        realm = Realm.getDefaultInstance();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        realm.close();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Realm.init(this);
-        realm = Realm.getDefaultInstance();
-    }
 
     void getCredendialsInprefs(){
 

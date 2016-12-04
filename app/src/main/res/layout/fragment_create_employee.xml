@@ -63,22 +63,20 @@
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
+                <android.support.design.widget.TextInputLayout
 
+                    android:id="@+id/input_layout_job1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-               <TextView
+                    <AutoCompleteTextView
+                        android:textColor="@color/colorPrimary"
+                        android:hint="@string/hint_job"
+                        android:id="@+id/autoText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Position"/>
-                    <Spinner
-                        android:spinnerMode="dialog"
-                        android:id="@+id/spinner"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-
-
+                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
 

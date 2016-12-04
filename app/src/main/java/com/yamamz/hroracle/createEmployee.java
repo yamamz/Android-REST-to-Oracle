@@ -10,11 +10,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.codetroopers.betterpickers.datepicker.DatePickerBuilder;
@@ -43,13 +42,10 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
     private String password;
     private EditText inputName, inputId, inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
     private  long timestamp;
-    private Spinner  spinnerJobs;
-     private   String itemJobSelected;
 
-
-
+    private AutoCompleteTextView inputJob;
     private ArrayList<Job> jobsList;
-private View RootView;
+    private View RootView;
 
 
     @Override
@@ -83,7 +79,7 @@ private View RootView;
         inputDatehire=(EditText) RootView.findViewById(R.id.input_datehire);
         inputCommission=(EditText) RootView.findViewById(R.id.input_comm);
         inputDeptno=(EditText) RootView.findViewById(R.id.input_deptno);
-        spinnerJobs = (Spinner) RootView.findViewById(R.id.spinner);
+        inputJob = (AutoCompleteTextView) RootView.findViewById(R.id.autoText1);
 
         inputDatehire.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,25 +105,18 @@ private View RootView;
         getJSONDataOnServer();
     }
 
-    private void initSimpleSpinner() {
+    private void initJobAutoComplete() {
         List<String> Jobtitle = new ArrayList<>();
         for (int i = 0; i < jobsList.size(); i++) {
           Jobtitle.add(jobsList.get(i).getJobTitle());
         }
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, Jobtitle);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerJobs.setAdapter(dataAdapter);
-        spinnerJobs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                itemJobSelected = parent.getItemAtPosition(position).toString();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+
+       inputJob.setAdapter(dataAdapter);
+
     }
 
 
@@ -151,7 +140,7 @@ private View RootView;
      * Create instance from your object and get the value of each Edit Text
      */
             Emp user = new Emp(Integer.valueOf(inputId.getText().toString()), inputName.getText().toString(),
-                    itemJobSelected, Integer.valueOf(inputManager.getText().toString()),
+                    inputJob.getText().toString(), Integer.valueOf(inputManager.getText().toString()),
                     String.valueOf(timestamp), Integer.valueOf(inputSalary.getText().toString()),
                     Integer.valueOf(inputCommission.getText().toString()), Integer.valueOf(inputDeptno.getText().toString()));
 
@@ -175,6 +164,7 @@ private View RootView;
                                 inputManager.setText("");
                                 inputCommission.setText("");
                                 inputDeptno.setText("");
+                        inputJob.setText("");
 
 
                     } else {
@@ -263,7 +253,8 @@ private View RootView;
 if(response.code()==200) {
     jobsList = response.body();
     Toast.makeText(getActivity(), String.valueOf(jobsList.size()), Toast.LENGTH_LONG).show();
-    initSimpleSpinner();
+    initJobAutoComplete();
+
                         }
             }
 

@@ -9,6 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,7 +34,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EmployeeDetails extends AppCompatActivity {
-     private EditText inputName, inputId, inputJob, inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
+     private EditText inputName, inputId,  inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
+    private AutoCompleteTextView inputJob;
+
     private String UnixTime;
     private String username;
     private String password;
@@ -82,7 +85,7 @@ public class EmployeeDetails extends AppCompatActivity {
 
         inputId=(EditText) findViewById(R.id.input_id);
         inputName=(EditText) findViewById(R.id.input_name);
-        inputJob=(EditText) findViewById(R.id.input_job);
+        inputJob=(AutoCompleteTextView) findViewById(R.id.input_job);
         inputSalary=(EditText) findViewById(R.id.input_sal);
         inputManager=(EditText) findViewById(R.id.input_mgr);
         inputDatehire=(EditText) findViewById(R.id.input_datehire);

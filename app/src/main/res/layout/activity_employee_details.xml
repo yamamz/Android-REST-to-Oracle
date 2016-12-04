@@ -173,13 +173,15 @@
                             android:id="@+id/input_layout_job"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
-                            <EditText
+
+                            <AutoCompleteTextView
+                                android:hint="@string/hint_job"
                                 android:textColor="@color/colorPrimary"
                                 android:enabled="false"
                                 android:id="@+id/input_job"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_job" />
+                                android:layout_height="wrap_content"/>
+
                         </android.support.design.widget.TextInputLayout>
 
 
