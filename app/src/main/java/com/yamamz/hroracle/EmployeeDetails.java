@@ -6,11 +6,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,12 +37,13 @@ import retrofit2.Response;
 public class EmployeeDetails extends AppCompatActivity {
      private EditText inputName, inputId,  inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
     private AutoCompleteTextView inputJob;
-
     private String UnixTime;
     private String username;
     private String password;
     private Emp employee;
-
+    private FloatingActionButton fab;
+    private Integer editFlag=1;
+     private Boolean   Edit=false;
     private Realm realm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,6 @@ public class EmployeeDetails extends AppCompatActivity {
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 
-
         initLayout();
         loadBackdrop();
 
@@ -80,9 +81,7 @@ public class EmployeeDetails extends AppCompatActivity {
          */
         Intent startingIntent = getIntent();
         final String id=startingIntent.getStringExtra("id");
-
         //initialize views
-
         inputId=(EditText) findViewById(R.id.input_id);
         inputName=(EditText) findViewById(R.id.input_name);
         inputJob=(AutoCompleteTextView) findViewById(R.id.input_job);
@@ -94,55 +93,35 @@ public class EmployeeDetails extends AppCompatActivity {
 
         inputId.setFocusable(false);
 
-        final Button btnUpdate=(Button) findViewById(R.id.btnUpdate);
-        Button btnDelete=(Button) findViewById(R.id.btnDelete);
+       FloatingActionButton fabDelete=(FloatingActionButton) findViewById(R.id.fabDelete);
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        fabDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getCredendialsInprefs();
                 DeleteEmployee(Integer.valueOf(id));
             }
         });
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
+
+
+
+  fab=(FloatingActionButton)findViewById(R.id.fabEdit);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(btnUpdate.getText().toString().equals("Edit")){
-                    inputId.setEnabled(true);
-                    inputName.setEnabled(true);
-                    inputJob.setEnabled(true);
-                    inputSalary.setEnabled(true);
-                    inputManager.setEnabled(true);
-                    inputDatehire.setEnabled(true);
-                    inputCommission.setEnabled(true);
-                    inputDeptno.setEnabled(true);
-
-                    btnUpdate.setText("Update");
-
-                }
-
-               else {
-
-                    inputId.setEnabled(false);
-                    inputName.setEnabled(false);
-                    inputJob.setEnabled(false);
-                    inputSalary.setEnabled(false);
-                    inputManager.setEnabled(false);
-                    inputDatehire.setEnabled(false);
-                    inputCommission.setEnabled(false);
-                    inputDeptno.setEnabled(false);
-                    btnUpdate.setText("Edit");
-                   getCredendialsInprefs();
-
-                    //The meathod to Edit employee
-                    EditEmployee();
-
+                switch (editFlag){
+                    case 1:
+                        enAbleeditText();
+                        break;
+                    case 0:
+                        getCredendialsInprefs();
+                        EditEmployee();
+                        break;
                 }
 
             }
         });
-
 
         /**
          * query sa Realm nga mo find employee on ID
@@ -157,7 +136,6 @@ public class EmployeeDetails extends AppCompatActivity {
         try {
             long timestamp = Long.valueOf(employee.getHiredate());
             Date dateHired = new Date(timestamp);
-
             inputName.setText(employee.getEname());
             inputSalary.setText(String.valueOf(employee.getSal()));
             inputJob.setText(employee.getJob());
@@ -165,8 +143,6 @@ public class EmployeeDetails extends AppCompatActivity {
             inputManager.setText(String.valueOf(employee.getMgr()));
             inputCommission.setText(String.valueOf(employee.getComm()));
             inputDeptno.setText(String.valueOf(employee.getDeptno()));
-
-
         }
 
         catch (Exception e){
@@ -176,30 +152,38 @@ public class EmployeeDetails extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close();
+
+    void enAbleeditText(){
+        inputId.setEnabled(true);
+        inputName.setEnabled(true);
+        inputJob.setEnabled(true);
+        inputSalary.setEnabled(true);
+        inputManager.setEnabled(true);
+        inputDatehire.setEnabled(true);
+        inputCommission.setEnabled(true);
+        inputDeptno.setEnabled(true);
+        fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_check_circle_white_36dp));
+        /**
+         * gamit para mka create ug different state to change icons and excute function
+         */
+        editFlag=0;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Realm.init(this);
-        realm = Realm.getDefaultInstance();
-    }
+    void disAbleEditText(){
+        inputId.setEnabled(false);
+        inputName.setEnabled(false);
+        inputJob.setEnabled(false);
+        inputSalary.setEnabled(false);
+        inputManager.setEnabled(false);
+        inputDatehire.setEnabled(false);
+        inputCommission.setEnabled(false);
+        inputDeptno.setEnabled(false);
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        realm.close();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Realm.init(this);
-        realm = Realm.getDefaultInstance();
+        fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_create_white_36dp));
+        /**
+         * gamit para mka create ug different state to change icons and excute function
+         */
+       editFlag=1;
     }
 
     void EditEmployee(){
@@ -221,6 +205,7 @@ public class EmployeeDetails extends AppCompatActivity {
             public void onResponse(Call<Emp> call, Response<Emp> response) {
 
                 if(response.code()==204) {
+                    disAbleEditText();
                     Toast.makeText(EmployeeDetails.this, "update Successfull", Toast.LENGTH_LONG).show();
                 }
 
@@ -258,6 +243,7 @@ public class EmployeeDetails extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        assert date1 != null;
         long output=date1.getTime()/1000L;
         String str=Long.toString(output);
         long timestamp = Long.parseLong(str) * 1000;
@@ -272,6 +258,7 @@ public class EmployeeDetails extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
                 if (response.code() == 204) {
                     realm.executeTransactionAsync(new Realm.Transaction() {
                         @Override
@@ -284,7 +271,6 @@ public class EmployeeDetails extends AppCompatActivity {
                         @Override
                         public void onSuccess() {
                             DeleteEmployee(PositionID);
-
                             inputSalary.setText("");
                             inputId.setText("");
                             inputDatehire.setText("");
@@ -294,7 +280,7 @@ public class EmployeeDetails extends AppCompatActivity {
                             inputCommission.setText("");
                             inputDeptno.setText("");
                             Toast.makeText(EmployeeDetails.this, "Delete successfully on id " + PositionID, Toast.LENGTH_LONG).show();
-
+                            fab.setEnabled(false);
                         }
                     });
                 }
@@ -317,6 +303,31 @@ public class EmployeeDetails extends AppCompatActivity {
         password = sharedPrefs.getString("password", "");
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        realm.close();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
+    }
 
 
 }

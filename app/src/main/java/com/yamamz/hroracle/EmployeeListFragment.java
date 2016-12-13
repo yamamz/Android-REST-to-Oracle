@@ -111,14 +111,14 @@ public class EmployeeListFragment extends Fragment  {
         private List<Employee> employeeList;
 
 
-        public class MyViewHolder extends RecyclerView.ViewHolder {
-            public TextView Name, empID, position,Initial;
+        class MyViewHolder extends RecyclerView.ViewHolder {
+            TextView Name, empID, position,Initial;
 
 
 
-            public final View mView;
+            final View mView;
 
-            public MyViewHolder(View view) {
+            MyViewHolder(View view) {
                 super(view);
                 mView = view;
                 Name = (TextView) view.findViewById(R.id.Name);
@@ -136,7 +136,7 @@ public class EmployeeListFragment extends Fragment  {
             this.employeeList = employeeList;
         }
 
-        public EmployeesAdapter(Context context, List<Employee> employeesList) {
+        EmployeesAdapter(Context context, List<Employee> employeesList) {
 
             this.employeeList = employeesList;
             this.context=context;
@@ -173,9 +173,6 @@ public class EmployeeListFragment extends Fragment  {
                     intent.putExtra("id", employee.getEmpID());
                     intent.putExtra("name",employee.getName());
                     startActivity(intent, options.toBundle());
-
-
-
                 }
             });
         }
@@ -281,7 +278,6 @@ public class EmployeeListFragment extends Fragment  {
             @Override
             public void onSuccess() {
 
-            Toast.makeText(getActivity(),"not null"+String.valueOf(dataEmp.size()),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -298,6 +294,12 @@ public class EmployeeListFragment extends Fragment  {
 
     public EmployeeListFragment() {
         super();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        employeesList.clear();
     }
 
     @Override

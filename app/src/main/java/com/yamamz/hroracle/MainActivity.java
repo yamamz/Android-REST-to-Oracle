@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private String username;
     private String password;
     private TextView userNameAvatar;
+   private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ if(username.isEmpty() && password.isEmpty()) {
         setupDrawerContent(navigationView);
         userNameAvatar.setText(username);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+   viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
@@ -88,6 +89,7 @@ if(username.isEmpty() && password.isEmpty()) {
         adapter.addFragment(new EmployeeListFragment(), "Employees");
         adapter.addFragment(new createEmployee(), "add Employee");
         adapter.addFragment(new createEmployee(), "Country");
+
         viewPager.setAdapter(adapter);
 
     }
@@ -110,27 +112,27 @@ if(username.isEmpty() && password.isEmpty()) {
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_employeeList:
+                        viewPager.setCurrentItem(0);
 
 
-                        mDrawerLayout.closeDrawers();
                         break;
 
                     case R.id.nav_create:
 
-                        mDrawerLayout.closeDrawers();
+                        viewPager.setCurrentItem(1);
 
                         break;
                     case R.id.nav_countries:
 
-                        mDrawerLayout.closeDrawers();
+                        viewPager.setCurrentItem(2);
                         break;
 
                     case R.id.nav_jobs:
 
-                        mDrawerLayout.closeDrawers();
+                        viewPager.setCurrentItem(1);
                         break;
                 }
-
+                mDrawerLayout.closeDrawers();
                 return true;
             }
         });

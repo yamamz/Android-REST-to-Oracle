@@ -67,9 +67,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-
-
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -183,12 +180,7 @@
                                 android:layout_height="wrap_content"/>
 
                         </android.support.design.widget.TextInputLayout>
-
-
                     </LinearLayout>
-
-
-
                         <android.support.design.widget.TextInputLayout
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"
                             android:id="@+id/input_layout_sal"
@@ -222,35 +214,16 @@
 
 
 
-                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
 
 
-                        <Button
-                            android:textColor="@color/White"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:id="@+id/btnUpdate"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Edit"
-                            />
+                </LinearLayout>
 
-                        <Button
-                            android:textColor="@color/White"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:id="@+id/btnDelete"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Delete"
-                            />
-                    </LinearLayout>
+
+
+
+
+
 
                 </LinearLayout>
 
@@ -262,11 +235,22 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabDelete"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_delete_sweep_white_48dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+     android:id="@+id/fabEdit"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end"
-        android:src="@drawable/ic_stars_white_36dp"
+        android:src="@drawable/ic_create_white_36dp"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"/>
 

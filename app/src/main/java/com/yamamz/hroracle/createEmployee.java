@@ -27,8 +27,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,7 +88,7 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
                         .setFragmentManager(getChildFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment)
                         .setTargetFragment(createEmployee.this);
-                dpb.show();
+                         dpb.show();
 
             }
         });
@@ -106,17 +106,45 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
     }
 
     private void initJobAutoComplete() {
-        List<String> Jobtitle = new ArrayList<>();
+        final String[] Jobtitle = new String[jobsList.size()];
         for (int i = 0; i < jobsList.size(); i++) {
-          Jobtitle.add(jobsList.get(i).getJobTitle());
+          Jobtitle[i]=jobsList.get(i).getJobTitle();
         }
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, Jobtitle);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
 
-       inputJob.setAdapter(dataAdapter);
+                    inputJob.setAdapter(dataAdapter);
+                    inputJob.setValidator(new AutoCompleteTextView.Validator() {
+            @Override
+            public boolean isValid(CharSequence charSequence) {
 
+                return Arrays.binarySearch(Jobtitle, charSequence.toString()) > 0;
+            }
+
+            @Override
+            public CharSequence fixText(CharSequence charSequence) {
+                inputJob.setError("your input is not in the List");
+                return"";
+            }
+
+
+        });
+        inputJob.setOnFocusChangeListener(new FocusListener());
+
+
+    }
+
+    class FocusListener implements View.OnFocusChangeListener{
+
+
+        @Override
+        public void onFocusChange(View view, boolean b) {
+            if(view.getId()==R.id.autoText1 && !b){
+                ((AutoCompleteTextView)view).performValidation();
+            }
+        }
     }
 
 
@@ -164,7 +192,7 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
                                 inputManager.setText("");
                                 inputCommission.setText("");
                                 inputDeptno.setText("");
-                        inputJob.setText("");
+                                 inputJob.setText("");
 
 
                     } else {
