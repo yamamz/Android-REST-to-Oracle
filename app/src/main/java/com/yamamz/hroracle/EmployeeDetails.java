@@ -40,6 +40,7 @@ public class EmployeeDetails extends AppCompatActivity {
     private String UnixTime;
     private String username;
     private String password;
+    private String server;
     private Emp employee;
     private FloatingActionButton fab;
     private Integer editFlag=1;
@@ -61,10 +62,8 @@ public class EmployeeDetails extends AppCompatActivity {
         /**
          * initialize realm for local database
          */
-
         Realm.init(this);
         realm = Realm.getDefaultInstance();
-
         initLayout();
         loadBackdrop();
 
@@ -150,9 +149,7 @@ public class EmployeeDetails extends AppCompatActivity {
         }
 
     }
-
-
-
+    
     void enAbleeditText(){
         inputId.setEnabled(true);
         inputName.setEnabled(true);
@@ -188,7 +185,8 @@ public class EmployeeDetails extends AppCompatActivity {
 
     void EditEmployee(){
         //get Authenticated
-        apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
+        apiServices service = ServiceGenerator.createService(apiServices.class, username,
+                password,server);
         //convert the datehire into unixtime
         converttoUnixtime();
 
@@ -252,7 +250,8 @@ public class EmployeeDetails extends AppCompatActivity {
 
     void DeleteEmployee(final int PositionID) {
 
-        apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
+        apiServices service = ServiceGenerator.createService(apiServices.class, username,
+                password,server);
         Call<ResponseBody> deleteRequest = service.deleteEmployee(PositionID);
         deleteRequest.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -301,6 +300,7 @@ public class EmployeeDetails extends AppCompatActivity {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         username = sharedPrefs.getString("username", "");
         password = sharedPrefs.getString("password", "");
+        server=sharedPrefs.getString("server","");
     }
 
     @Override

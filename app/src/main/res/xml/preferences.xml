@@ -6,6 +6,7 @@
         android:title="Please Enter your Credentials">
 
         <EditTextPreference
+            android:visibility="gone"
             android:enabled="false"
             android:defaultValue=""
             android:dialogMessage="Username"
@@ -15,6 +16,7 @@
             android:summary="your username stored here"
             android:title="Username" />
         <EditTextPreference
+            android:visibility="gone"
             android:enabled="false"
             android:defaultValue=""
             android:dialogMessage="Password"
@@ -23,6 +25,16 @@
             android:key="password"
             android:summary="Your password stored here"
             android:title="Password" />
+        <EditTextPreference
+            android:visibility="gone"
+            android:enabled="false"
+            android:defaultValue=""
+            android:dialogMessage="Server"
+            android:dialogTitle="Server"
+            android:inputType="numberDecimal"
+            android:key="server"
+            android:summary="Your server IP stored here"
+            android:title="Server" />
     </PreferenceCategory>
 
 

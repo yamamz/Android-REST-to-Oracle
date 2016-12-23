@@ -40,6 +40,7 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
     private ProgressDialog pDialog;
     private String username;
     private String password;
+    private String server;
     private EditText inputName, inputId, inputSalary, inputManager, inputDatehire, inputCommission, inputDeptno;
     private  long timestamp;
 
@@ -159,7 +160,8 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
         /**
              Get the credendials an authenticate
          */
-        apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
+        apiServices service = ServiceGenerator.createService(apiServices.class, username,
+                password,server);
 
 
         try {
@@ -243,6 +245,7 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         username = sharedPrefs.getString("username", "");
         password = sharedPrefs.getString("password", "");
+        server=sharedPrefs.getString("server","");
     }
 
     /**
@@ -271,7 +274,8 @@ public class createEmployee extends Fragment implements DatePickerDialogFragment
 
     void getJSONDataOnServer(){
         getCredendialsInprefs();
-        apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
+        apiServices service = ServiceGenerator.createService(apiServices.class, username,
+                password,server);
         Call<ArrayList<Job>> call = service.getJobs();
         call.enqueue(new Callback<ArrayList<Job>>() {
             @Override

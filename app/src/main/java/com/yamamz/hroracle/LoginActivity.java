@@ -26,8 +26,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    private EditText mUsername;
-    private EditText mPasswordView;
+    private EditText myUsername;
+    private EditText myPasswordView;
+    private EditText myServer;
+
     private Button btnLogin;
 
     private Boolean isAutheticated=false;
@@ -44,8 +46,9 @@ initViews();
 
 
    void initViews(){
-      mUsername=(EditText) findViewById(R.id.user_name);
-       mPasswordView=(EditText) findViewById(R.id.password);
+      myUsername=(EditText) findViewById(R.id.user_name);
+       myPasswordView=(EditText) findViewById(R.id.password);
+       myServer=(EditText) findViewById(R.id.serverIP);
        btnLogin=(Button) findViewById(R.id.btnLogin);
 
        btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -71,12 +74,13 @@ initViews();
 
 
 
-        String username = mUsername.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String username = myUsername.getText().toString();
+        String password = myPasswordView.getText().toString();
+        String server=myServer.getText().toString();
 
         // TODO: Implement your own authentication logic here.
 
-        getAuthenticated(username,password);
+        getAuthenticated(username,password,server);
 
 
     }
@@ -101,8 +105,9 @@ initViews();
          */
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("username",mUsername.getText().toString());
-        editor.putString("password",mPasswordView.getText().toString());
+        editor.putString("username",myUsername.getText().toString());
+        editor.putString("password",myPasswordView.getText().toString());
+        editor.putString("server",myServer.getText().toString());
         editor.apply();
        btnLogin.setEnabled(true);
         finish();
@@ -119,29 +124,30 @@ initViews();
          *
          */
         boolean valid = true;
-        String username = mUsername.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String username = myUsername.getText().toString();
+        String password = myPasswordView.getText().toString();
         if (username.isEmpty()) {
-            mUsername.setError("enter a valid username address");
+            myUsername.setError("enter a valid username address");
             valid = false;
         } else {
-            mUsername.setError(null);
+            myUsername.setError(null);
         }
         if (password.isEmpty()) {
-           mPasswordView.setError("enter a valid password");
+           myPasswordView.setError("enter a valid password");
             valid = false;
         } else {
-            mPasswordView.setError(null);
+            myPasswordView.setError(null);
         }
         return valid;
     }
 
 
-   void getAuthenticated(String Username, String Password) {
+   void getAuthenticated(String Username, String Password,String Server) {
 
 
-       apiServices service = ServiceGenerator.createService(apiServices.class, Username, Password);
-       Call<ArrayList<Emp>> call = service.getEmployees();
+       apiServices service = ServiceGenerator.createService(apiServices.class, Username,
+               Password,Server);
+       Call<ArrayList<Emp>> call = service.getAutheticated();
        call.enqueue(new Callback<ArrayList<Emp>>() {
            @Override
            public void onResponse(Call<ArrayList<Emp>> call, Response<ArrayList<Emp>> response) {
@@ -159,13 +165,14 @@ initViews();
                                    onLoginSuccess();
                                    progressDialog.dismiss();
                                }
-                           }, 1000);
+                           }, 500);
                }
 
                else{
                    onLoginFailed();
-                   mUsername.setText("");
-                   mPasswordView.setText("");
+                   myUsername.setText("");
+                   myPasswordView.setText("");
+
 
                }
 
@@ -175,9 +182,8 @@ initViews();
            public void onFailure(Call<ArrayList<Emp>> call, Throwable t) {
 
                onLoginFailed();
-               mUsername.setText("");
-               mPasswordView.setText("");
-
+               myUsername.setText("");
+               myPasswordView.setText("");
 
            }
 

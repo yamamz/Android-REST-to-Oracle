@@ -69,22 +69,14 @@ if(username.isEmpty() && password.isEmpty()) {
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
-
-
-
-
     }
 
 
 
 
     private void setupViewPager(ViewPager viewPager) {
-
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new EmployeeListFragment(), "Employees");
         adapter.addFragment(new createEmployee(), "add Employee");
@@ -108,8 +100,6 @@ if(username.isEmpty() && password.isEmpty()) {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-
                 switch (menuItem.getItemId()) {
                     case R.id.nav_employeeList:
                         viewPager.setCurrentItem(0);
@@ -196,6 +186,7 @@ if(username.isEmpty() && password.isEmpty()) {
                 //key value pair
                 editor.putString("username","");
                 editor.putString("password","");
+                editor.putString("server","");
                 editor.apply();
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
@@ -208,10 +199,10 @@ if(username.isEmpty() && password.isEmpty()) {
 
 
     void getCredendialsInprefs(){
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         username = sharedPrefs.getString("username", "");
         password = sharedPrefs.getString("password", "");
+
     }
 
 }

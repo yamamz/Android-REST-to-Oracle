@@ -47,6 +47,7 @@ public class EmployeeListFragment extends Fragment  {
     private ArrayList<Emp> dataEmp;
     private String username;
     private String password;
+    private String server;
     private List<Employee> employeesList = new ArrayList<>();
     private List<Employee> employeeFilterList= new ArrayList<>();
    // private RecyclerView recyclerView;
@@ -219,7 +220,8 @@ public class EmployeeListFragment extends Fragment  {
 
     void getJSONDataOnServer(){
 
-        apiServices service = ServiceGenerator.createService(apiServices.class, username, password);
+        apiServices service = ServiceGenerator.createService(apiServices.class, username,
+                password,server);
         Call<ArrayList<Emp>> call = service.getEmployees();
         call.enqueue(new Callback<ArrayList<Emp>>() {
             @Override
@@ -325,6 +327,7 @@ public class EmployeeListFragment extends Fragment  {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         username = sharedPrefs.getString("username", "");
         password = sharedPrefs.getString("password", "");
+        server=sharedPrefs.getString("server","");
     }
 
 

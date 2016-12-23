@@ -18,25 +18,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    private static final String API_BASE_URL = "http://192.168.43.237:8080/WebService/";
-
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-    private static Retrofit.Builder builder =
-            new Retrofit.Builder()
-                    .baseUrl(API_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create());
-
+    private static Retrofit.Builder builder;
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null, null);
+        return createService(serviceClass, null, null,null);
     }
 
-    public static <S> S createService(Class<S> serviceClass, String username, String password) {
-        if (username != null && password != null) {
+    public static <S> S createService(Class<S> serviceClass, String username, String password,
+                                      String server) {
+
+        if (username != null && password != null && server!=null) {
+            String API_BASE_URL = "http://" + server + ":8080/WebService/";
+            builder = new Retrofit.Builder()
+                            .baseUrl(API_BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create());
             String credentials = username + ":" + password;
-
             final String basic = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-
             httpClient.addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Interceptor.Chain chain) throws IOException {

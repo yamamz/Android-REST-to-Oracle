@@ -54,7 +54,6 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <EditText
                     android:id="@+id/password"
                     android:inputType="textPassword"
@@ -67,7 +66,19 @@
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
-
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/serverIP"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableLeft="@drawable/ic_lock_blue_400_24dp"
+                    android:drawableTint="#FF4081"
+                    android:hint="Server IP"
+                    android:maxLines="1" />
+            </android.support.design.widget.TextInputLayout>
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="fill_parent"
