@@ -6,8 +6,9 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 /**
- * Created by AMRI on 12/4/2016.
+ * Created by Raymundo T. Melecio on 11/30/2016.
  */
+
 public class MyApplication extends Application {
 
     @Override

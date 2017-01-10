@@ -1,7 +1,7 @@
 package com.yamamz.hroracle.model;
 
 /**
- * Created by AMRI on 11/30/2016.
+ * Created by Raymundo T. Melecio on 11/30/2016.
  */
 //This model is for populating only in Recyclerview
 public class Employee {

@@ -12,7 +12,7 @@ import com.yamamz.hroracle.R;
 
 
 /**
- * Created by AMRI on 11/28/2016.
+ * Created by Raymundo T. Melecio on 11/28/2016.
  */
 
 public class Settings extends AppCompatPreferenceActivity {

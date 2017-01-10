@@ -26,6 +26,12 @@ import com.yamamz.hroracle.prefs.Settings;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Created by Raymundo T. Melecio on 11/30/2016.
+ */
+
+
 public class MainActivity extends AppCompatActivity {
 
 

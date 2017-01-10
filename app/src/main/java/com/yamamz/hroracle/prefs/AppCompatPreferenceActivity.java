@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by AMRI on 11/28/2016.
+ * Created by Raymundo T. Melecio on 11/28/2016.
  */
 
 public abstract class AppCompatPreferenceActivity extends PreferenceActivity {

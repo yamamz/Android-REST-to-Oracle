@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import javax.annotation.Generated;
 
 /**
- * Created by AMRI on 12/3/2016.
+ * Created by Raymundo T. Melecio on 12/3/2016.
  */
 
 @Generated("org.jsonschema2pojo")
