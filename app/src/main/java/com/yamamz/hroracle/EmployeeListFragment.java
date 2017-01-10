@@ -1,5 +1,6 @@
 package com.yamamz.hroracle;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -41,23 +42,15 @@ import retrofit2.Response;
 
 public class EmployeeListFragment extends Fragment  {
 
-
-
-
     private ArrayList<Emp> dataEmp;
     private String username;
     private String password;
     private String server;
     private List<Employee> employeesList = new ArrayList<>();
-    private List<Employee> employeeFilterList= new ArrayList<>();
-   // private RecyclerView recyclerView;
     private EmployeesAdapter mAdapter;
-
-
     ArrayList<HashMap<String, String>> employeeList;
     private String TAG = MainActivity.class.getSimpleName();
     private ProgressDialog pDialog;
-
     private Realm realm;
     private RecyclerView recyclerView;
 
@@ -76,8 +69,6 @@ public class EmployeeListFragment extends Fragment  {
 
         Realm.init(getActivity());
         realm = Realm.getDefaultInstance();
-
-      //  searchEmployee();
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
@@ -153,16 +144,16 @@ public class EmployeeListFragment extends Fragment  {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
 
-            TypedArray circles = context.getResources().obtainTypedArray(R.array.circle_images);
+            @SuppressLint("Recycle") TypedArray circles = context.getResources().obtainTypedArray(R.array.circle_images);
 
-            int choice = (int) (Math.random() * circles.length());
+            int colorRandom = (int) (Math.random() * circles.length());
             final Employee employee = employeeList.get(position);
             holder.Name.setText(employee.getName());
             holder.position.setText(employee.getPosition());
             holder.empID.setText(employee.getEmpID());
             String name= holder.Name.getText().toString();
             holder.Initial.setText(name.substring(1,2));
-            holder.Initial.setBackgroundResource((circles.getResourceId(choice, R.drawable.circle)));
+            holder.Initial.setBackgroundResource((circles.getResourceId(colorRandom, R.drawable.circle)));
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -301,7 +292,10 @@ public class EmployeeListFragment extends Fragment  {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        employeesList.clear();
+        String SampleText="Test";
+        Toast.makeText(getActivity(),SampleText,Toast.LENGTH_LONG).show();
+
+      //  employeesList.clear();
     }
 
     @Override
